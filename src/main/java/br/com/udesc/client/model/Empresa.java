@@ -11,7 +11,7 @@ public class Empresa {
     private String nome;
     private String cnpj;
     private String endereco;
-    private List<String> pessoas;
+    private String cpfPessoa;
 
     public String getNome() {
         return nome;
@@ -29,14 +29,6 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
-    public List<String> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<String> pessoas) {
-        this.pessoas = pessoas;
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -45,9 +37,17 @@ public class Empresa {
         this.endereco = endereco;
     }
 
+    public String getCpfPessoa() {
+        return cpfPessoa;
+    }
+
+    public void setCpfPessoa(String cpfPessoa) {
+        this.cpfPessoa = cpfPessoa;
+    }
+
     @Override
     public String toString() {
-        return "Empresa{" + "nome=" + nome + ", cnpj=" + cnpj + ", pessoas=" + pessoas + '}';
+        return "Empresa{" + "nome=" + nome + ", cnpj=" + cnpj + ", endereco=" + endereco + ", cpfPessoa=" + cpfPessoa + '}';
     }
 
 }

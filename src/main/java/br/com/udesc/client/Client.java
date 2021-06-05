@@ -20,23 +20,23 @@ public class Client {
 
     private static ControllerPessoa controllerPessoa;
     private static ControllerEmpresa controllerEmpresa;
+
     private static Socket s;
     private static Scanner sc;
 
     public static void main(String[] args) throws IOException {
 
-
         while (true) {
-            s = new Socket(address, porta);
 
             menu();
-            receberDados();
+//            receberDados();
         }
 
 //        s.close();
     }
 
     public static void enviarDados(String msg) throws IOException {
+        s = new Socket(address, porta);
         PrintWriter pr = new PrintWriter(s.getOutputStream());
         pr.println(msg);
         pr.flush();
@@ -50,7 +50,6 @@ public class Client {
     }
 
     public static void menu() throws IOException {
-
         System.out.println("Qual operação você deseja fazer?"
                 + "\n1 - Inserir "
                 + "\n2 - Atualizar "
@@ -67,16 +66,20 @@ public class Client {
                 + "\n2 - Empresa");
         int entidade = sc.nextInt();
 
-        controllerPessoa  = new ControllerPessoa();
+        controllerPessoa = new ControllerPessoa();
         controllerEmpresa = new ControllerEmpresa();
-
+        
+        System.out.println("Operação: " + operacao);
+        System.out.println("entidade: " + entidade);
+        String msg = "";
         switch (operacao) {
             case 1:
-                String msg = "";
                 if (entidade == 1) {
                     msg = controllerPessoa.inserirPessoa();
+                    msg += menuAuxiliar();
+                    receberDados();
                     enviarDados(msg);
-                    System.out.println("switch pessoa: " + msg);
+                    System.out.println("switch pessoa: " + msg);                    
                 } else {
                     msg = controllerEmpresa.inserirEmpresa();
                     enviarDados(msg);
@@ -90,10 +93,22 @@ public class Client {
 //                controller.selecionarPessoa();
                 break;
             case 4:
-//                controller.listarPessoas();
+//                
                 break;
             case 5:
-
+                if (entidade == 1) {
+                    msg = controllerPessoa.listarPessoas();
+                    System.out.println("entrou switch case listar pessoa" + msg);
+                    enviarDados(msg);
+                    receberDados();
+                    menu();
+                } else {
+                    msg = controllerEmpresa.listarEmpresas();
+                    System.out.println("entrou switch case listar empresa " + msg);
+                    enviarDados(msg);
+                    receberDados();
+                    menu();
+                }
                 break;
             case 6:
                 sc.close();
@@ -104,6 +119,18 @@ public class Client {
                 break;
         }
 
+    }
+
+    public static String menuAuxiliar() throws IOException {
+        String msg = "";
+        System.out.println("Deseja vincular a pessoa à uma empresa? [s/n]");
+        String opcao = sc.next();
+        if (opcao.equalsIgnoreCase("s")) {
+            System.out.println("Escreva o CNPJ de uma empresa:");
+            enviarDados("2LIST**");
+            msg += sc.nextLine();
+        }
+        return msg;
     }
 
 }

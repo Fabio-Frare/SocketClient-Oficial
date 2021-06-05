@@ -53,8 +53,8 @@ public class ControllerPessoa {
         System.out.println("Pessoa selecionada.");
     }
 
-    public void listarPessoas() {
-        System.out.println("Pessoas listada.");
+    public String listarPessoas() {
+        return "1LIST**";
     }
 
 }

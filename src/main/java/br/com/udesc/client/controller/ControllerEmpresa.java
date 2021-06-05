@@ -55,7 +55,7 @@ public class ControllerEmpresa {
         System.out.println("Pessoa selecionada.");
     }
 
-    public void listarEmpresas() {
-        System.out.println("Pessoas listada.");
+    public String listarEmpresas() {
+        return "2LIST**";
     }
 }

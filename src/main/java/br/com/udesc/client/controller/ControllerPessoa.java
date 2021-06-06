@@ -18,8 +18,8 @@ public class ControllerPessoa {
 
     public String inserirPessoa() throws IOException {
         pessoa = new Pessoa();
-        utils  = new Utils();
-        in     = new Scanner(System.in);
+        utils = new Utils();
+        in = new Scanner(System.in);
 
         System.out.println("Favor informar o nome da pessoa: ");
         String nomePessoa = in.nextLine();
@@ -36,7 +36,7 @@ public class ControllerPessoa {
         String cnpjEmpresa = "*";
         pessoa.setCnpjEmpresa(utils.padronizaInsercao(cnpjEmpresa, 14));
 
-        mensagem  = "1INSERT";                 //   7 bytes
+        mensagem = "1INSERT";                 //   7 bytes
         mensagem += pessoa.getCpf();          //  11 bytes
         mensagem += pessoa.getNome();         // 100 bytes
         mensagem += pessoa.getEndereco();     // 100 bytes 
@@ -53,7 +53,8 @@ public class ControllerPessoa {
         Scanner sc = new Scanner(System.in);
         String cpf = "";
         System.out.println("Favor informar o CPF da pessoa: ");
-        cpf = sc.next();
+        cpf = sc.nextLine();
+//        sc.close();
         return "1GET***" + cpf;
     }
 
@@ -61,4 +62,11 @@ public class ControllerPessoa {
         return "1LIST**";
     }
 
+    public String deletarPessoaPorCpf() {
+        Scanner sc = new Scanner(System.in);
+        String cpf = "";
+        System.out.println("Favor informar o CPF da pessoa: ");
+        cpf = sc.nextLine();
+        return "1DELETE" + cpf;
+    }
 }

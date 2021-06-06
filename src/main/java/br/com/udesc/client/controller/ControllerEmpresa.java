@@ -58,4 +58,21 @@ public class ControllerEmpresa {
     public String listarEmpresas() {
         return "2LIST**";
     }
+
+    public String buscarEmpresaporCnpj() {
+        Scanner sc = new Scanner(System.in);
+        String cnpj = "";
+        System.out.println("Favor informar o CNPJ da empresa: ");
+        cnpj = sc.nextLine();
+        return "2GET***" + cnpj;
+    }
+
+    public String deletarEmpresaporCnpj() {
+        Scanner sc = new Scanner(System.in);
+        String cnpj = "";
+        System.out.println("Favor informar o CNPJ da empresa: ");
+        cnpj = sc.nextLine();
+        return "2DELETE" + cnpj;
+    }
+
 }

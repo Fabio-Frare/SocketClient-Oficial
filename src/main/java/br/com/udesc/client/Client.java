@@ -105,16 +105,27 @@ public class Client {
                     msg = controllerPessoa.buscarPessoaPorCpf();
                     enviarDados(msg);
                     receberDados(); // retorno da pessoa
-                    menu();
                 }
                 if (entidade == 2) {
-                    msg = controllerEmpresa.atualizarEmpresa();
+                    msg = controllerEmpresa.buscarEmpresaporCnpj();
+                    System.out.println("GET: " + msg);
                     enviarDados(msg);
+                    receberDados();
                 }
                 menu();
                 break;
             case 4: //DELETE
-//                
+                if(entidade == 1) {
+                    msg = controllerPessoa.deletarPessoaPorCpf();
+                    enviarDados(msg);
+                    receberDados();
+                }
+                if(entidade == 2) {
+                    msg = controllerEmpresa.deletarEmpresaporCnpj();
+                    enviarDados(msg);
+                    receberDados();
+                }
+                menu();
                 break;
             case 5: //LIST
                 if (entidade == 1) {

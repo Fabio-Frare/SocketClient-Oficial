@@ -45,12 +45,16 @@ public class ControllerPessoa {
         return mensagem;
     }
 
-    public void atualizarPessoa() {
-        System.out.println("Pessoa atualizada.");
+    public String atualizarPessoa() {
+        return "1UPDATE";
     }
 
-    public void selecionarPessoa() {
-        System.out.println("Pessoa selecionada.");
+    public String buscarPessoaPorCpf() {
+        Scanner sc = new Scanner(System.in);
+        String cpf = "";
+        System.out.println("Favor informar o CPF da pessoa: ");
+        cpf = sc.next();
+        return "1GET***" + cpf;
     }
 
     public String listarPessoas() {

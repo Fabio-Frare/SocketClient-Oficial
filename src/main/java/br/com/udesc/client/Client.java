@@ -32,7 +32,6 @@ public class Client {
 //            receberDados();
         }
 
-//        s.close();
     }
 
     public static void enviarDados(String msg) throws IOException {
@@ -68,54 +67,76 @@ public class Client {
 
         controllerPessoa = new ControllerPessoa();
         controllerEmpresa = new ControllerEmpresa();
-        
-        System.out.println("Operação: " + operacao);
-        System.out.println("entidade: " + entidade);
+
+//        System.out.println("Operação: " + operacao);
+//        System.out.println("entidade: " + entidade);
         String msg = "";
         switch (operacao) {
-            case 1:
+            case 1: // INSERT
                 if (entidade == 1) {
                     msg = controllerPessoa.inserirPessoa();
-                    msg += menuAuxiliar();
-                    receberDados();
                     enviarDados(msg);
-                    System.out.println("switch pessoa: " + msg);                    
-                } else {
+                    System.out.println("switch pessoa: " + msg);
+
+                }
+                if (entidade == 2) {
                     msg = controllerEmpresa.inserirEmpresa();
                     enviarDados(msg);
                     System.out.println("switch empresa: " + msg);
                 }
+                menu();
                 break;
-            case 2:
-//                controller.atualizarPessoa();
-                break;
-            case 3:
-//                controller.selecionarPessoa();
-                break;
-            case 4:
-//                
-                break;
-            case 5:
+            case 2: // UPDATE
                 if (entidade == 1) {
-                    msg = controllerPessoa.listarPessoas();
-                    System.out.println("entrou switch case listar pessoa" + msg);
+                    msg = controllerPessoa.atualizarPessoa();
                     enviarDados(msg);
-                    receberDados();
-                    menu();
-                } else {
-                    msg = controllerEmpresa.listarEmpresas();
-                    System.out.println("entrou switch case listar empresa " + msg);
+                    receberDados(); // recebe listagem de pessoas
+                    menuAtualizarPessoa();
+                    receberDados(); // mensagem da atualização ok/não
+                }
+                if (entidade == 2) {
+                    msg = controllerEmpresa.atualizarEmpresa();
                     enviarDados(msg);
-                    receberDados();
+                }
+                menu();
+                break;
+            case 3: // GET
+                if (entidade == 1) {
+                    msg = controllerPessoa.buscarPessoaPorCpf();
+                    enviarDados(msg);
+                    receberDados(); // retorno da pessoa
                     menu();
                 }
+                if (entidade == 2) {
+                    msg = controllerEmpresa.atualizarEmpresa();
+                    enviarDados(msg);
+                }
+                menu();
                 break;
-            case 6:
+            case 4: //DELETE
+//                
+                break;
+            case 5: //LIST
+                if (entidade == 1) {
+                    msg = controllerPessoa.listarPessoas();
+//                    System.out.println("entrou switch case listar pessoa" + msg);
+                    enviarDados(msg);
+                    receberDados();
+                }
+                if (entidade == 2) {
+                    msg = controllerEmpresa.listarEmpresas();
+//                    System.out.println("entrou switch case listar empresa " + msg);
+                    enviarDados(msg);
+                    receberDados();
+                }
+                menu();
+                break;
+            case 6: // SAIR DA APLICAÇÃO
                 sc.close();
                 break;
             default:
                 System.out.println("Opção inválida.");
-                sc.close();
+                menu();
                 break;
         }
 
@@ -131,6 +152,20 @@ public class Client {
             msg += sc.nextLine();
         }
         return msg;
+    }
+
+    public static void menuAtualizarPessoa() throws IOException {
+        String msg = "";
+        System.out.println("Informe o CPF da pessoa que você deseja atualizar:");
+        msg = sc.nextLine();
+        enviarDados(msg); // 
+        
+        menu();
+    }
+    
+    public static String menuBuscarPessoaPorCpf(String cpf) {
+        
+        return "";
     }
 
 }

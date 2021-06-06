@@ -36,7 +36,7 @@ public class ControllerEmpresa {
         String cpfPessoa = "*";
         empresa.setCpfPessoa(utils.padronizaInsercao(cpfPessoa, 11));
 
-        mensagem = "1INSERT";               //   7 bytes
+        mensagem = "2INSERT";               //   7 bytes
         mensagem += empresa.getCnpj();      //  14 bytes
         mensagem += empresa.getNome();      // 100 bytes
         mensagem += empresa.getEndereco();  // 100 bytes 
@@ -47,8 +47,8 @@ public class ControllerEmpresa {
         return mensagem;
     }
 
-    public void atualizarEmpresa() {
-        System.out.println("Pessoa atualizada.");
+    public String atualizarEmpresa() {
+        return "2UPDATE";
     }
 
     public void selecionarEmpresa() {

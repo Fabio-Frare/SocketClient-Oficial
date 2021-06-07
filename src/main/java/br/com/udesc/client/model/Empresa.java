@@ -1,6 +1,5 @@
 package br.com.udesc.client.model;
 
-import java.util.List;
 
 /**
  *

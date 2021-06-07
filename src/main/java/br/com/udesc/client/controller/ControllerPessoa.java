@@ -33,7 +33,15 @@ public class ControllerPessoa {
         String enderecoPessoa = in.nextLine();
         pessoa.setEndereco(utils.padronizaInsercao(enderecoPessoa, 100));
 
-        String cnpjEmpresa = "*";
+        System.out.println("Deseja vincular a pessoa a uma empresa? [s/n]");
+        String opcao = in.nextLine();
+        String cnpjEmpresa = "";
+        if (opcao.equalsIgnoreCase("s")) {
+            System.out.println("Favor invofrmar um CNPJ: ");
+            cnpjEmpresa = in.nextLine();
+        } else {
+            cnpjEmpresa = "*";
+        }
         pessoa.setCnpjEmpresa(utils.padronizaInsercao(cnpjEmpresa, 14));
 
         mensagem = "1INSERT";                 //   7 bytes
@@ -49,11 +57,11 @@ public class ControllerPessoa {
         pessoa = new Pessoa();
         utils = new Utils();
         in = new Scanner(System.in);
-        
+
         System.out.println("Favor informar o CPF: ");
         String cpf = in.nextLine();
         pessoa.setCpf(utils.padronizaInsercao(cpf, 11));
-        
+
         System.out.println("Favor informar o nome da pessoa: ");
         String nomePessoa = in.nextLine();
         pessoa.setNome(utils.padronizaInsercao(nomePessoa, 100));
@@ -79,7 +87,7 @@ public class ControllerPessoa {
         String cpf = "";
         System.out.println("Favor informar o CPF da pessoa: ");
         cpf = sc.nextLine();
-        
+
         return "1GET***" + cpf;
     }
 
@@ -100,7 +108,6 @@ public class ControllerPessoa {
         String cpf = "";
         System.out.println("Favor informar o CPF da pessoa: ");
         cpf = sc.nextLine();
-//        sc.close();
         return "1GET***" + cpf;
     }
 }

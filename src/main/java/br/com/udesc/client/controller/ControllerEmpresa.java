@@ -76,10 +76,6 @@ public class ControllerEmpresa {
         return mensagem;
     }
 
-    public void selecionarEmpresa() {
-        System.out.println("Pessoa selecionada.");
-    }
-
     public String listarEmpresas() {
         return "2LIST**";
     }

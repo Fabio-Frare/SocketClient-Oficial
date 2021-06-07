@@ -27,9 +27,7 @@ public class Client {
     public static void main(String[] args) throws IOException {
 
         while (true) {
-
             menu();
-//            receberDados();
         }
 
     }
@@ -68,31 +66,29 @@ public class Client {
         controllerPessoa = new ControllerPessoa();
         controllerEmpresa = new ControllerEmpresa();
 
-//        System.out.println("Operação: " + operacao);
-//        System.out.println("entidade: " + entidade);
         String msg = "";
         switch (operacao) {
             case 1: // INSERT
                 if (entidade == 1) {
                     msg = controllerPessoa.inserirPessoa();
                     enviarDados(msg);
-//                    System.out.println("switch pessoa: " + msg);
+                    receberDados();
                 }
                 if (entidade == 2) {
                     msg = controllerEmpresa.inserirEmpresa();
                     enviarDados(msg);
-                    System.out.println("switch empresa: " + msg);
+                    receberDados();
                 }
                 menu();
                 break;
             case 2: // UPDATE
                 if (entidade == 1) {
                     msg = controllerPessoa.listarPessoas();
-                    enviarDados(msg); // enviar pedido lista pessoas
+                    enviarDados(msg);
                     receberDados();
                     msg = controllerPessoa.atualizarPessoa();
                     enviarDados(msg);
-                    receberDados(); // recebe mensagem de ok
+                    receberDados();
                 }
                 if (entidade == 2) {
                     msg = controllerEmpresa.listarEmpresas();
@@ -134,13 +130,11 @@ public class Client {
             case 5: //LIST
                 if (entidade == 1) {
                     msg = controllerPessoa.listarPessoas();
-//                    System.out.println("entrou switch case listar pessoa" + msg);
                     enviarDados(msg);
                     receberDados();
                 }
                 if (entidade == 2) {
                     msg = controllerEmpresa.listarEmpresas();
-//                    System.out.println("entrou switch case listar empresa " + msg);
                     enviarDados(msg);
                     receberDados();
                 }
@@ -148,6 +142,7 @@ public class Client {
                 break;
             case 6: // SAIR DA APLICAÇÃO
                 sc.close();
+                s.close();
                 break;
             default:
                 System.out.println("Opção inválida.");
@@ -157,18 +152,16 @@ public class Client {
 
     }
 
-    public static String menuAuxiliar() throws IOException {
-        String msg = "";
-        System.out.println("Deseja vincular a pessoa à uma empresa? [s/n]");
-        String opcao = sc.next();
-        if (opcao.equalsIgnoreCase("s")) {
-            System.out.println("Escreva o CNPJ de uma empresa:");
-            enviarDados("2LIST**");
-            msg += sc.nextLine();
-        }
-        return msg;
-    }
-
-   
+//    public static String menuAuxiliar() throws IOException {
+//        String msg = "";
+//        System.out.println("Deseja vincular a pessoa à uma empresa? [s/n]");
+//        String opcao = sc.next();
+//        if (opcao.equalsIgnoreCase("s")) {
+//            System.out.println("Escreva o CNPJ de uma empresa:");
+//            enviarDados("2LIST**");
+//            msg += sc.nextLine();
+//        }
+//        return msg;
+//    }
 
 }

@@ -48,7 +48,32 @@ public class ControllerEmpresa {
     }
 
     public String atualizarEmpresa() {
-        return "2UPDATE";
+        empresa = new Empresa();
+        utils = new Utils();
+        in = new Scanner(System.in);
+
+        System.out.println("Favor informar o CNPJ: ");
+        String cnpj = in.nextLine();
+        empresa.setCnpj(utils.padronizaInsercao(cnpj, 14));
+
+        System.out.println("Favor informar o nome da empresa: ");
+        String nomeEmpresa = in.nextLine();
+        empresa.setNome(utils.padronizaInsercao(nomeEmpresa, 100));
+
+        System.out.println("Favor informar o endereço: ");
+        String enderecoEmpresa = in.nextLine();
+        empresa.setEndereco(utils.padronizaInsercao(enderecoEmpresa, 100));
+
+        String cpfPessoa = "*";
+        empresa.setCpfPessoa(utils.padronizaInsercao(cpfPessoa, 11));
+
+        mensagem = "2UPDATE";                //   7 bytes
+        mensagem += empresa.getCnpj();       //  11 bytes
+        mensagem += empresa.getNome();       // 100 bytes
+        mensagem += empresa.getEndereco();   // 100 bytes 
+        mensagem += empresa.getCpfPessoa();  //  14 bytes  => 232 bytes
+
+        return mensagem;
     }
 
     public void selecionarEmpresa() {

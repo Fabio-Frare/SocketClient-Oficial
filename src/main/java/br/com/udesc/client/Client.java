@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author fabio
+ * @author Fábio
  */
 public class Client {
 
@@ -76,8 +76,7 @@ public class Client {
                 if (entidade == 1) {
                     msg = controllerPessoa.inserirPessoa();
                     enviarDados(msg);
-                    System.out.println("switch pessoa: " + msg);
-
+//                    System.out.println("switch pessoa: " + msg);
                 }
                 if (entidade == 2) {
                     msg = controllerEmpresa.inserirEmpresa();
@@ -88,15 +87,20 @@ public class Client {
                 break;
             case 2: // UPDATE
                 if (entidade == 1) {
+                    msg = controllerPessoa.listarPessoas();
+                    enviarDados(msg); // enviar pedido lista pessoas
+                    receberDados();
                     msg = controllerPessoa.atualizarPessoa();
                     enviarDados(msg);
-                    receberDados(); // recebe listagem de pessoas
-                    menuAtualizarPessoa();
-                    receberDados(); // mensagem da atualização ok/não
+                    receberDados(); // recebe mensagem de ok
                 }
                 if (entidade == 2) {
+                    msg = controllerEmpresa.listarEmpresas();
+                    enviarDados(msg);
+                    receberDados();
                     msg = controllerEmpresa.atualizarEmpresa();
                     enviarDados(msg);
+                    receberDados();
                 }
                 menu();
                 break;
@@ -115,12 +119,12 @@ public class Client {
                 menu();
                 break;
             case 4: //DELETE
-                if(entidade == 1) {
+                if (entidade == 1) {
                     msg = controllerPessoa.deletarPessoaPorCpf();
                     enviarDados(msg);
                     receberDados();
                 }
-                if(entidade == 2) {
+                if (entidade == 2) {
                     msg = controllerEmpresa.deletarEmpresaporCnpj();
                     enviarDados(msg);
                     receberDados();
@@ -165,18 +169,6 @@ public class Client {
         return msg;
     }
 
-    public static void menuAtualizarPessoa() throws IOException {
-        String msg = "";
-        System.out.println("Informe o CPF da pessoa que você deseja atualizar:");
-        msg = sc.nextLine();
-        enviarDados(msg); // 
-        
-        menu();
-    }
-    
-    public static String menuBuscarPessoaPorCpf(String cpf) {
-        
-        return "";
-    }
+   
 
 }

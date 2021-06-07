@@ -40,7 +40,7 @@ public class Utils {
         return pessoa;
     }
 
-    private String reverteConversao(String variavel) {
+    public String reverteConversao(String variavel) {
         return variavel.replaceAll("\\*", " ").trim();
     }
 }

@@ -43,7 +43,7 @@ public class Client {
         InputStreamReader in = new InputStreamReader(s.getInputStream());
         BufferedReader bf = new BufferedReader(in);
         String str = bf.readLine();
-        System.out.println("server: " + str);
+        System.out.println("Server: " + str);
     }
 
     public static void menu() throws IOException {
@@ -108,7 +108,6 @@ public class Client {
                 }
                 if (entidade == 2) {
                     msg = controllerEmpresa.buscarEmpresaporCnpj();
-                    System.out.println("GET: " + msg);
                     enviarDados(msg);
                     receberDados();
                 }
@@ -149,19 +148,7 @@ public class Client {
                 menu();
                 break;
         }
-
     }
 
-//    public static String menuAuxiliar() throws IOException {
-//        String msg = "";
-//        System.out.println("Deseja vincular a pessoa à uma empresa? [s/n]");
-//        String opcao = sc.next();
-//        if (opcao.equalsIgnoreCase("s")) {
-//            System.out.println("Escreva o CNPJ de uma empresa:");
-//            enviarDados("2LIST**");
-//            msg += sc.nextLine();
-//        }
-//        return msg;
-//    }
 
 }
